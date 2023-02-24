@@ -6,24 +6,22 @@ on:
       - main
     paths:
       - '**.py'
-
   workflow_dispatch:
-    # inputs:
-    #   run_file:
-    #     description: 'Job to be run'
-    #     required: true
-    #     default: 'test.py'
-
+    
     pull_request:
       type:
         - opened
         - labeled
         - synchronize
         - closed
-
       
 jobs:
   test:
     runs-on: macos-latest
     steps:
       - run: echo Hello github-actions
+      - if: ${{github.event_name == 'pull_request'}}
+        uses: actions/checkout@v2
+        with:
+          mode: exactly
+
