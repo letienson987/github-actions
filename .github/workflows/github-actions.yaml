@@ -8,11 +8,17 @@ on:
       - '**.py'
 
   workflow_dispatch:
-    inputs:
-      run_file:
-        description: 'Job to be run'
-        required: true
-        default: 'test.py'
+    # inputs:
+    #   run_file:
+    #     description: 'Job to be run'
+    #     required: true
+    #     default: 'test.py'
+
+    pull_request:
+      type:
+        - opened
+        - labeled
+        - synchronize
 
       
 jobs:
