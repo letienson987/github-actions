@@ -1,27 +1,27 @@
 ---
 name: Try Github Actions
 on:
+
   push:
-    branches:
-      - main
     paths:
-      - '**.py'
+      - '**.js'
+    branches:
+      - 'main'
+
+  pull_request:
+    types: [opened, reopened, synchronize]
+
   workflow_dispatch:
-    
-    pull_request:
-      type:
-        - opened
-        - labeled
-        - synchronize
-        - closed
-      
 jobs:
-  test:
+  say-hello:
     runs-on: macos-latest
     steps:
-      - run: echo Hello github-actions
       - if: ${{github.event_name == 'pull_request'}}
-        uses: actions/checkout@v2
+        uses: mheap/github-action-required-labels@v1
         with:
           mode: exactly
-
+          count: 0
+          labels: "do not build"
+      - run: echo "TODAY=$(date +%y-%m-%d)" >> $GITHUB_ENV
+      - run: echo Hello world, today is $TODAY
+      # - run: docker image ls     
