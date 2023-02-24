@@ -9,11 +9,7 @@ on:
   workflow_dispatch:
     
     pull_request:
-      type:
-        - opened
-        - labeled
-        - synchronize
-        - closed
+      type: [opened, reopened, synchronize, closed, reopened]
       
 jobs:
   test:
