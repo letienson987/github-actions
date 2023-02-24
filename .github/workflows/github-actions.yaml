@@ -2,10 +2,16 @@
 name: Build and Test on macOS
 on:
   push:
-    path:
-      - '**.py'
     branches:
       - main
+
+  workflow_dispatch:
+    inputs:
+      run_file:
+        description: 'Job to be run'
+        required: true
+        default: 'test.py'
+
       
 jobs:
   test:
