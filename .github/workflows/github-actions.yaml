@@ -19,6 +19,7 @@ on:
         - opened
         - labeled
         - synchronize
+        - closed
 
       
 jobs:
