@@ -1,3 +1,4 @@
 print('hello')
 print('hello')
-if rkafnkjs
+print('hello')
+
