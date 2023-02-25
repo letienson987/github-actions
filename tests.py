@@ -11,7 +11,7 @@ import requests
 
 
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-driver.get("https://gmail.com")
+driver.get("https://gmail.
 
 
 
