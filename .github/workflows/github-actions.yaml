@@ -1,27 +1,50 @@
----
-name: Try Github Actions
+# ---
+# name: Try Github Actions
+# on:
+
+#   push:
+#     paths:
+#       - '**.js'
+#     branches:
+#       - 'main'
+
+#   pull_request:
+#     types: [opened, reopened, synchronize]
+
+#   # workflow_dispatch:
+# jobs:
+#   say-hello:
+#     runs-on: macos-latest
+#     steps:
+#       - if: ${{github.event_name == 'pull_request'}}
+#         uses: mheap/github-action-required-labels@v1
+#         with:
+#           mode: exactly
+#           count: 0
+#           labels: "do not build"
+#       - run: echo "TODAY=$(date +%y-%m-%d)" >> $GITHUB_ENV
+#       - run: echo Hello world, today is $TODAY
+      # - run: docker image ls     
+
+
+name: Python file workflow
 on:
-
   push:
-    paths:
-      - '**.js'
-    branches:
-      - 'main'
-
+    branches: [main]
   pull_request:
-    types: [opened, reopened, synchronize]
+    branches: [main]
 
-  workflow_dispatch:
 jobs:
-  say-hello:
+  run-python:
     runs-on: macos-latest
     steps:
-      - if: ${{github.event_name == 'pull_request'}}
-        uses: mheap/github-action-required-labels@v1
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
         with:
-          mode: exactly
-          count: 0
-          labels: "do not build"
-      - run: echo "TODAY=$(date +%y-%m-%d)" >> $GITHUB_ENV
-      - run: echo Hello world, today is $TODAY
-      # - run: docker image ls     
+          python-version: 3.x
+      - name: Install dependencies
+        run: pip3 install -r requirements.txt
+      - name: Run Python script
+        run: python3 script.py
