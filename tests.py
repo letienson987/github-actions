@@ -15,7 +15,7 @@ driver.get("https://gmail.com")
 
 
 
-# time.sleep(100)
+time.sleep(3)
 
 # Total_Contract = driver.find_element(By.XPATH,"/html/body/div[1]/div/div[2]/div[1]/div/div[1]/div/div[1]/span/span").text
 # print(Total_Contract)
